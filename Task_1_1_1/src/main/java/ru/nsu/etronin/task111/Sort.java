@@ -1,9 +1,14 @@
 package ru.nsu.etronin.task111;
 
+/**
+ * Класс реализует алгоритм пирамидальной сортировки.
+ */
+
 public class Sort {
 
     /**
-     * Пирамидальная сортировка
+     * Пирамидальная сортировка.
+     *
      * @param arr Массив, который нужно отсортировать.
      */
 
@@ -14,11 +19,11 @@ public class Sort {
 
         int n = arr.length;
 
-        for (int i=n/2-1; i>=0; i--) {
+        for (int i = n / 2 - 1; i >= 0; i--) {
             sift(arr, n, i);
         }
 
-        for (int i=n-1; i>0; i--) {
+        for (int i = n - 1; i > 0; i--) {
             int temp = arr[0];
             arr[0] = arr[i];
             arr[i] = temp;
