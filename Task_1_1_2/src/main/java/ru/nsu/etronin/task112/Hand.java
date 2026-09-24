@@ -32,10 +32,6 @@ public class Hand {
         return sum;
     }
 
-    public List<Card> getCards() {
-        return cards;
-    }
-
     public String getCardsString(boolean hideFirstCard) {
         StringBuilder sb = new StringBuilder("[");
         for (int i = 0; i < cards.size(); i++) {
@@ -49,5 +45,10 @@ public class Hand {
         }
         sb.append("]");
         return sb.toString();
+    }
+
+    public String getClosedCardString() {
+        if (cards.isEmpty()) return "<нет карты>";
+        return cards.get(0).getFullCard();
     }
 }

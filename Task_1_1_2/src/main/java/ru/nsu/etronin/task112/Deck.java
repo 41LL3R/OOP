@@ -8,11 +8,11 @@ import java.util.Random;
 public class Deck {
     private final List<Card> cards = new ArrayList<>();
     private final Random random = new Random();
-    private final int numberOfDecks;   // ← запоминаем, сколько колод
+    private final int numberOfDecks;
 
     public Deck(int numberOfDecks) {
         this.numberOfDecks = numberOfDecks;
-        refill();                       // ← наполняем колоду
+        refill();
         shuffle();
     }
 
@@ -34,8 +34,8 @@ public class Deck {
     public Card drawCard() {
         if (cards.isEmpty()) {
             System.out.println("Колода пуста, перетасовка...");
-            refill();                   // ← восстанавливаем
-            shuffle();                  // ← и перемешиваем
+            refill();
+            shuffle();
         }
         return cards.remove(cards.size() - 1);
     }

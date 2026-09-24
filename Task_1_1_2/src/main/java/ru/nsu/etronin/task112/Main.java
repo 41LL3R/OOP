@@ -27,85 +27,100 @@ public class Main {
     }
 
     private void playRound() {
-        human.resetHand();
-        dealer.resetHand();
-
-        human.takeCard(deck.drawCard());
-        dealer.takeCard(deck.drawCard());
-        human.takeCard(deck.drawCard());
-        dealer.takeCard(deck.drawCard());
-
-        System.out.println("Дилер раздал карты");
+        resetHands();
+        dealInitialCards();
         printState(true);
 
-        if (human.getHand().getScore() == 21) {
-            System.out.println("У вас Блэкджек!");
-            if (dealer.getHand().getScore() == 21) {
-                System.out.println("У дилера тоже Блэкджек. Ничья!");
-                System.out.println();
-            } else {
-                playerWins++;
-                printScore();
-            }
+        if (handleBlackjack()) {
             return;
         }
 
-        if (dealer.getHand().getScore() == 21) {
-            System.out.println("У дилера Блэкджек!");
-            System.out.println("Дилер выиграл раунд.");
+        if (playerTurn()) {
             dealerWins++;
             printScore();
             return;
         }
 
-        boolean playerBusted = false;
+        dealerTurn();
+        resolveRound();
+        printScore();
+    }
 
+    private void resetHands() {
+        human.resetHand();
+        dealer.resetHand();
+    }
+
+    private void dealInitialCards() {
+        human.takeCard(deck.drawCard());
+        dealer.takeCard(deck.drawCard());
+        human.takeCard(deck.drawCard());
+        dealer.takeCard(deck.drawCard());
+        System.out.println("Дилер раздал карты");
+    }
+
+    private boolean handleBlackjack() {
+        if (human.getScore() == 21) {
+            System.out.println("У вас Блэкджек!");
+            if (dealer.getScore() == 21) {
+                System.out.println("У дилера тоже Блэкджек. Ничья!");
+            } else {
+                playerWins++;
+                printScore();
+            }
+            System.out.println();
+            return true;
+        }
+        if (dealer.getScore() == 21) {
+            System.out.println("У дилера Блэкджек!");
+            System.out.println("Дилер выиграл раунд.");
+            dealerWins++;
+            printScore();
+            return true;
+        }
+        return false;
+    }
+
+    private boolean playerTurn() {
         while (true) {
             System.out.println("Ваш ход");
             System.out.println("-------");
             System.out.println("Введите “1”, чтобы взять карту, и “0”, чтобы остановиться...");
 
             int choice = scanner.nextInt();
+            if (choice != 1) break;
 
-            if (choice == 1) {
-                Card newCard = deck.drawCard();
-                human.takeCard(newCard);
-                System.out.println("Вы открыли карту " + newCard.getFullCard() + " (" + newCard.getValue() + ")");
-                printState(true);
+            Card newCard = deck.drawCard();
+            human.takeCard(newCard);
+            System.out.println("Вы открыли карту " + newCard.getFullCard() + " (" + newCard.getValue() + ")");
+            printState(true);
 
-                if (human.getHand().getScore() > 21) {
-                    System.out.println("Перебор! Вы проиграли.");
-                    playerBusted = true;
-                    break;
-                }
-            } else {
-                break;
+            if (human.getScore() > 21) {
+                System.out.println("Перебор! Вы проиграли.");
+                return true;
             }
         }
+        return false;
+    }
 
-        if (playerBusted) {
-            dealerWins++;
-            printScore();
-            return;
-        }
-
+    private void dealerTurn() {
         System.out.println("Ход дилера");
         System.out.println("-------");
-        System.out.println("Дилер открывает закрытую карту " + dealer.getHand().getCards().get(0).getFullCard());
+        System.out.println("Дилер открывает закрытую карту " + dealer.getClosedCardString());
         printState(false);
 
-        while (dealer.getHand().getScore() < 17) {
+        while (dealer.getScore() < 17) {
             Card newCard = deck.drawCard();
             dealer.takeCard(newCard);
             System.out.println("Дилер открывает карту " + newCard.getFullCard());
             printState(false);
         }
+    }
 
-        int playerScore = human.getHand().getScore();
-        int dealerScore = dealer.getHand().getScore();
-
-        System.out.println("Ваши карты: " + human.getHand().getCardsString(false) + " == " + playerScore);
-        System.out.println("Карты дилера: " + dealer.getHand().getCardsString(false) + " == " + dealerScore);
+    private void resolveRound() {
+        int playerScore = human.getScore();
+        int dealerScore = dealer.getScore();
+        printState(false);
 
         if (dealerScore > 21) {
             System.out.println("У дилера перебор! Вы выиграли раунд!");
@@ -119,13 +134,17 @@ public class Main {
         } else {
             System.out.println("Ничья!");
         }
-
-        printScore();
     }
 
+
+
     private void printState(boolean hideDealerCard) {
-        System.out.println("\tВаши карты: " + human.getHand().getCardsString(false) + " == " + human.getHand().getScore());
-        System.out.println("\tКарты дилера: " + dealer.getHand().getCardsString(hideDealerCard));
+        System.out.println("\tВаши карты: " + human.getHandString(false) + " == " + human.getScore());
+        if (hideDealerCard) {
+            System.out.println("\tКарты дилера: " + dealer.getHandString(true));
+        } else {
+            System.out.println("\tКарты дилера: " + dealer.getHandString(false) + " == " + dealer.getScore());
+        }
         System.out.println();
     }
 

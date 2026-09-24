@@ -8,15 +8,23 @@ public class Player {
         this.name = name;
     }
 
-    public Hand getHand() {
-        return hand;
-    }
-
     public void takeCard(Card card) {
         hand.addCard(card);
     }
 
     public void resetHand() {
         hand.clear();
+    }
+
+    public int getScore() {
+        return hand.getScore();
+    }
+
+    public String getHandString(boolean hide) {
+        return hand.getCardsString(hide);
+    }
+
+    public String getClosedCardString() {
+        return hand.getClosedCardString();
     }
 }
