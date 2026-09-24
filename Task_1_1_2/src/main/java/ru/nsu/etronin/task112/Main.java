@@ -46,12 +46,12 @@ public class Main {
         printScore();
     }
 
-    private void resetHands() {
+    void resetHands() {
         human.resetHand();
         dealer.resetHand();
     }
 
-    private void dealInitialCards() {
+    void dealInitialCards() {
         human.takeCard(deck.drawCard());
         dealer.takeCard(deck.drawCard());
         human.takeCard(deck.drawCard());
@@ -59,7 +59,7 @@ public class Main {
         System.out.println("Дилер раздал карты");
     }
 
-    private boolean handleBlackjack() {
+    boolean handleBlackjack() {
         if (human.getScore() == 21) {
             System.out.println("У вас Блэкджек!");
             if (dealer.getScore() == 21) {
@@ -138,7 +138,7 @@ public class Main {
 
 
 
-    private void printState(boolean hideDealerCard) {
+    void printState(boolean hideDealerCard) {
         System.out.println("\tВаши карты: " + human.getHandString(false) + " == " + human.getScore());
         if (hideDealerCard) {
             System.out.println("\tКарты дилера: " + dealer.getHandString(true));
@@ -148,7 +148,7 @@ public class Main {
         System.out.println();
     }
 
-    private void printScore() {
+    void printScore() {
         System.out.println("Счет " + playerWins + ":" + dealerWins);
         System.out.println();
     }
