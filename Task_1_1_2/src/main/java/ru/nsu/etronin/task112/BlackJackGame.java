@@ -11,10 +11,10 @@ public class BlackJackGame {
     private final Scanner scanner;
 
     public BlackJackGame() {
-        this(new Deck(1), new Scanner(System.in));   // вызывает второй конструктор
+        this(new Deck(1), new Scanner(System.in));
     }
 
-    BlackJackGame(Deck deck, Scanner scanner) {      // ← это перегрузка
+    BlackJackGame(Deck deck, Scanner scanner) {
         this.deck = deck;
         this.human = new Player("Игрок");
         this.dealer = new Dealer("Дилер");

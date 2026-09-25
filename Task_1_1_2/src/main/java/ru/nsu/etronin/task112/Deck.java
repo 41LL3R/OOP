@@ -11,17 +11,16 @@ public class Deck {
     private final int numberOfDecks;
 
     public Deck(int numberOfDecks) {
-        this(numberOfDecks, new Random());     // обычный запуск
+        this(numberOfDecks, new Random());
     }
 
-    public Deck(int numberOfDecks, Random random) {   // для тестов
+    public Deck(int numberOfDecks, Random random) {
         this.numberOfDecks = numberOfDecks;
         this.random = random;
         refill();
         shuffle();
     }
 
-    // Наполняет колоду заново (numberOfDecks × 52 карты)
     private void refill() {
         for (int d = 0; d < numberOfDecks; d++) {
             for (Suit suit : Suit.values()) {

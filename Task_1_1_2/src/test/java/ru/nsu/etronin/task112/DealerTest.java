@@ -63,8 +63,6 @@ class DealerTest {
         assertFalse(dealer.shouldHit());
     }
 
-    // ---------- унаследованные методы, чтобы покрытие класса Dealer было 100% ----------
-
     @Test
     void testTakeCardAndGetScore() {
         dealer.takeCard(new Card(Suit.CLUBS, Rank.FIVE));

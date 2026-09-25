@@ -28,7 +28,6 @@ class DeckTest {
         for (int i = 0; i < 52; i++) {
             deck.drawCard();
         }
-        // 53-я карта должна прийти из перетасованной колоды
         Card card = deck.drawCard();
         assertNotNull(card);
     }

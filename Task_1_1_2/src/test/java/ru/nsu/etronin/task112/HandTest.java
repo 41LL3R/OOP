@@ -36,7 +36,7 @@ class HandTest {
     void testAceCountsAsEleven() {
         hand.addCard(new Card(Suit.SPADES, Rank.ACE));
         hand.addCard(new Card(Suit.HEARTS, Rank.SIX));
-        assertEquals(17, hand.getScore()); // 11 + 6
+        assertEquals(17, hand.getScore());
     }
 
     @Test
