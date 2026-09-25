@@ -7,11 +7,16 @@ import java.util.Random;
 
 public class Deck {
     private final List<Card> cards = new ArrayList<>();
-    private final Random random = new Random();
+    private final Random random;
     private final int numberOfDecks;
 
     public Deck(int numberOfDecks) {
+        this(numberOfDecks, new Random());     // обычный запуск
+    }
+
+    public Deck(int numberOfDecks, Random random) {   // для тестов
         this.numberOfDecks = numberOfDecks;
+        this.random = random;
         refill();
         shuffle();
     }

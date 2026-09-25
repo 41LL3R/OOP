@@ -8,12 +8,17 @@ public class BlackJackGame {
     private final Dealer dealer;
     private int playerWins = 0;
     private int dealerWins = 0;
-    private final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner;
 
     public BlackJackGame() {
-        this.deck = new Deck(1);
+        this(new Deck(1), new Scanner(System.in));   // вызывает второй конструктор
+    }
+
+    BlackJackGame(Deck deck, Scanner scanner) {      // ← это перегрузка
+        this.deck = deck;
         this.human = new Player("Игрок");
         this.dealer = new Dealer("Дилер");
+        this.scanner = scanner;
     }
 
     public void start() {
@@ -26,7 +31,7 @@ public class BlackJackGame {
         }
     }
 
-    private void playRound() {
+    void playRound() {
         resetHands();
         dealInitialCards();
         printState(true);
