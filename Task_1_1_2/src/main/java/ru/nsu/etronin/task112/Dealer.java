@@ -1,5 +1,9 @@
 package ru.nsu.etronin.task112;
 
+/**
+ * Класс самого дилера, включающий его логику.
+ */
+
 public class Dealer extends Player {
 
     private static final int DEALER_MIN_SCORE = 17;

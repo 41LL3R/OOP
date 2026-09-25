@@ -2,6 +2,10 @@ package ru.nsu.etronin.task112;
 
 import java.util.Scanner;
 
+/**
+ * Главный класс блекджека. Здесь реализованы методы самой игры.
+ */
+
 public class BlackJackGame {
     private final Deck deck;
     private final Player human;
@@ -20,6 +24,10 @@ public class BlackJackGame {
         this.dealer = new Dealer("Дилер");
         this.scanner = scanner;
     }
+
+    /**
+     * Первый рануд игры, вывод приветствия.
+     */
 
     public void start() {
         System.out.println("Добро пожаловать в Блэкджек!");

@@ -1,5 +1,9 @@
 package ru.nsu.etronin.task112;
 
+/**
+ * Перечисление всех мастей и метод возвращающий масть.
+ */
+
 public enum Suit {
     SPADES("♠"),
     HEARTS("♥"),

@@ -1,5 +1,9 @@
 package ru.nsu.etronin.task112;
 
+/**
+ * Перечисление всех цен карт и методы возвращающие имя и ценность.
+ */
+
 public enum Rank {
     TWO("2", 2),
     THREE("3", 3),

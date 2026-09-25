@@ -1,5 +1,9 @@
 package ru.nsu.etronin.task112;
 
+/**
+ * Реализация класса Card.
+ */
+
 public class Card {
     private final Suit suit;
     private final Rank rank;

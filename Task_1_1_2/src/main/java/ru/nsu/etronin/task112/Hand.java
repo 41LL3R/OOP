@@ -3,6 +3,10 @@ package ru.nsu.etronin.task112;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Класс, где реализована рука игрока.
+ */
+
 public class Hand {
     private final List<Card> cards = new ArrayList<>();
 
@@ -13,6 +17,11 @@ public class Hand {
     public void clear() {
         cards.clear();
     }
+
+    /**
+     * Метод проходится по всем картам в руке и складыввает их значения.
+     * @return Возвращает сумму.
+     */
 
     public int getScore() {
         int sum = 0;
@@ -32,6 +41,12 @@ public class Hand {
         return sum;
     }
 
+    /**
+     * Создает строку из всех карт, что сейчас есть в руке.
+     * @param hideFirstCard Прячет первую карту дилера от человека-игрока.
+     * @return Возвращает всю строку имеющихся карт игрока.
+     */
+
     public String getCardsString(boolean hideFirstCard) {
         StringBuilder sb = new StringBuilder("[");
         for (int i = 0; i < cards.size(); i++) {
@@ -48,6 +63,11 @@ public class Hand {
         sb.append("]");
         return sb.toString();
     }
+
+    /**
+     * Показывает скрытую карту дилера.
+     * @return Возвращает карту в виде строки.
+     */
 
     public String getClosedCardString() {
         if (cards.isEmpty()) {

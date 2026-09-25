@@ -1,5 +1,9 @@
 package ru.nsu.etronin.task112;
 
+/**
+ * Класс игрока, родительский класс Dealer.
+ */
+
 public class Player {
     protected final Hand hand = new Hand();
     protected final String name;

@@ -5,6 +5,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Класс колод, из которых дилер разыгрывает карты.
+ */
+
 public class Deck {
     private final List<Card> cards = new ArrayList<>();
     private final Random random;
@@ -13,6 +17,10 @@ public class Deck {
     public Deck(int numberOfDecks) {
         this(numberOfDecks, new Random());
     }
+
+    /**
+     * Колода для тестов. Сюда можно передать сид, чтобы всегда была одинаковая колода.
+     */
 
     public Deck(int numberOfDecks, Random random) {
         this.numberOfDecks = numberOfDecks;
@@ -35,6 +43,11 @@ public class Deck {
         Collections.shuffle(cards, random);
     }
 
+    /**
+     * Уменьшает количество карт в колоде после их взятия.
+     * @return Возвращает количество доступных карт.
+     */
+    
     public Card drawCard() {
         if (cards.isEmpty()) {
             System.out.println("Колода пуста, перетасовка...");
