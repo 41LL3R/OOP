@@ -8,8 +8,8 @@ public enum Suit {
 
     private final String symbol;
 
-    Suit(String Symbol) {
-        this.symbol = Symbol;
+    Suit(String symbol) {
+        this.symbol = symbol;
     }
 
     public String getSymbol() {

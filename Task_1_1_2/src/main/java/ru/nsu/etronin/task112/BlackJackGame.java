@@ -93,7 +93,9 @@ public class BlackJackGame {
             System.out.println("Введите “1”, чтобы взять карту, и “0”, чтобы остановиться...");
 
             int choice = scanner.nextInt();
-            if (choice != 1) break;
+            if (choice != 1) {
+                break;
+            }
 
             Card newCard = deck.drawCard();
             human.takeCard(newCard);
@@ -143,11 +145,13 @@ public class BlackJackGame {
 
 
     void printState(boolean hideDealerCard) {
-        System.out.println("\tВаши карты: " + human.getHandString(false) + " == " + human.getScore());
+        System.out.println("\tВаши карты: " + human.getHandString(false)
+                + " == " + human.getScore());
         if (hideDealerCard) {
             System.out.println("\tКарты дилера: " + dealer.getHandString(true));
         } else {
-            System.out.println("\tКарты дилера: " + dealer.getHandString(false) + " == " + dealer.getScore());
+            System.out.println("\tКарты дилера: " + dealer.getHandString(false)
+                    + " == " + dealer.getScore());
         }
         System.out.println();
     }
@@ -157,11 +161,19 @@ public class BlackJackGame {
         System.out.println();
     }
 
-    int getPlayerWins() { return playerWins; }
+    int getPlayerWins() {
+        return playerWins;
+    }
 
-    int getDealerWins() { return dealerWins; }
+    int getDealerWins() {
+        return dealerWins;
+    }
 
-    int getHumanCardCount() { return human.getCardCount(); }
+    int getHumanCardCount() {
+        return human.getCardCount();
+    }
 
-    int getDealerCardCount() { return dealer.getCardCount(); }
+    int getDealerCardCount() {
+        return dealer.getCardCount();
+    }
 }

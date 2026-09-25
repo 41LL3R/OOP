@@ -41,14 +41,18 @@ public class Hand {
                 Card c = cards.get(i);
                 sb.append(c).append(" (").append(c.getValue()).append(")");
             }
-            if (i < cards.size() - 1) sb.append(", ");
+            if (i < cards.size() - 1) {
+                sb.append(", ");
+            }
         }
         sb.append("]");
         return sb.toString();
     }
 
     public String getClosedCardString() {
-        if (cards.isEmpty()) return "<нет карты>";
+        if (cards.isEmpty()) {
+            return "<нет карты>";
+        }
         return cards.get(0).toString();
     }
 
