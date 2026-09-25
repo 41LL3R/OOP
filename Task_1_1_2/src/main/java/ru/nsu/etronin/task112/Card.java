@@ -17,8 +17,8 @@ public class Card {
         return rank.getValue();
     }
 
-    public String getFullCard() {
-        return suit.getSymbol() + ' ' + rank.getName();
+    @Override
+    public String toString() {
+        return suit.getSymbol() + " " + rank.getName();
     }
 }
-

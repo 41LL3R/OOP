@@ -27,4 +27,8 @@ public class Player {
     public String getClosedCardString() {
         return hand.getClosedCardString();
     }
+
+    public int getCardCount() {
+        return hand.size();
+    }
 }

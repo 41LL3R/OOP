@@ -39,7 +39,7 @@ public class Hand {
                 sb.append("<???>");
             } else {
                 Card c = cards.get(i);
-                sb.append(c.getFullCard()).append(" (").append(c.getValue()).append(")");
+                sb.append(c).append(" (").append(c.getValue()).append(")");
             }
             if (i < cards.size() - 1) sb.append(", ");
         }
@@ -49,6 +49,10 @@ public class Hand {
 
     public String getClosedCardString() {
         if (cards.isEmpty()) return "<нет карты>";
-        return cards.get(0).getFullCard();
+        return cards.get(0).toString();
+    }
+
+    public int size() {
+        return cards.size();
     }
 }

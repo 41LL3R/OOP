@@ -30,8 +30,8 @@ class CardTest {
     }
 
     @Test
-    void testGetFullCard() {
+    void testToString() {
         Card card = new Card(Suit.HEARTS, Rank.ACE);
-        assertEquals("♥ Туз", card.getFullCard());
+        assertEquals("♥ Туз", card.toString());
     }
 }
