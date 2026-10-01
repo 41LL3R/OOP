@@ -15,20 +15,24 @@ class ExpressionParser {
     }
 
     private Expression parseExpression() {
-        if (pos >= input.length()) throw new RuntimeException("Unexpected end of input");
+        if (pos >= input.length()) {
+            throw new RuntimeException("Unexpected end of input");
+        }
 
         char c = input.charAt(pos);
 
         if (c == '(') {
             pos++;
-            Expression left = parseExpression();
+            final Expression left = parseExpression();
 
-            char op = input.charAt(pos);
+            final char op = input.charAt(pos);
             pos++;
 
-            Expression right = parseExpression();
+            final Expression right = parseExpression();
 
-            if (input.charAt(pos) != ')') throw new RuntimeException("Expected ')' at pos " + pos);
+            if (input.charAt(pos) != ')') {
+                throw new RuntimeException("Expected ')' at pos " + pos);
+            }
             pos++;
 
             switch (op) {
@@ -45,11 +49,13 @@ class ExpressionParser {
             }
             String token = input.substring(start, pos);
 
-            if (token.isEmpty()) throw new RuntimeException("Empty token at " + pos);
-
+            if (token.isEmpty()) {
+                throw new RuntimeException("Empty token at " + pos);
+            }
             if (Character.isDigit(token.charAt(0))) {
                 return new Number(Integer.parseInt(token));
-            } else {
+            }
+            else {
                 return new Variable(token);
             }
         }

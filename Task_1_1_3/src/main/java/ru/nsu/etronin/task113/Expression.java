@@ -21,7 +21,9 @@ abstract class Expression {
 
     private Map<String, Integer> parseAssignments(String str) {
         Map<String, Integer> map = new HashMap<>();
-        if (str == null || str.trim().isEmpty()) return map;
+        if (str == null || str.trim().isEmpty()) {
+            return map;
+        }
 
         String[] parts = str.split(";");
         for (String part : parts) {

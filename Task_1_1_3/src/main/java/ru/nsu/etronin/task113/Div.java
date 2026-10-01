@@ -3,10 +3,14 @@ package ru.nsu.etronin.task113;
 import java.util.Map;
 
 class Div extends BinaryOperation {
-    public Div(Expression left, Expression right) { super(left, right); }
+    public Div(Expression left, Expression right) {
+        super(left, right);
+    }
 
     @Override
-    public String toString() { return format("/"); }
+    public String toString() {
+        return format("/");
+    }
 
     @Override
     public int evaluate(Map<String, Integer> variables) {
