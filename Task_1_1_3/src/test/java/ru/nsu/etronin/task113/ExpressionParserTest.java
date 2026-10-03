@@ -1,6 +1,7 @@
 package ru.nsu.etronin.task113;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Map;
 import org.junit.jupiter.api.Test;
@@ -36,5 +37,25 @@ class ExpressionParserTest {
     void testParseAndEvaluate() {
         Expression e = ExpressionParser.parse("(3+(2*x))");
         assertEquals(23, e.evaluate(Map.of("x", 10)));
+    }
+
+    @Test
+    void testParseMissingClosingBracket() {
+        assertThrows(Exception.class, () -> ExpressionParser.parse("(3+5"));
+    }
+
+    @Test
+    void testParseUnknownOperator() {
+        assertThrows(Exception.class, () -> ExpressionParser.parse("(3%5)"));
+    }
+
+    @Test
+    void testParseEmptyInput() {
+        assertThrows(Exception.class, () -> ExpressionParser.parse(""));
+    }
+
+    @Test
+    void testParseOperatorWithoutOperand() {
+        assertThrows(Exception.class, () -> ExpressionParser.parse("(3+)"));
     }
 }

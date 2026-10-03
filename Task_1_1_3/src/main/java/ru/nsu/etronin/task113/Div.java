@@ -14,7 +14,14 @@ class Div extends BinaryOperation {
 
     @Override
     public int evaluate(Map<String, Integer> variables) {
-        return left.evaluate(variables) / right.evaluate(variables);
+        final int leftValue = left.evaluate(variables);
+        final int rightValue = right.evaluate(variables);
+
+        if (rightValue == 0) { // Java сама бросает ArithmeticException при делении на 0
+            throw new ArithmeticException("Division by zero is prohibited"); // Я добавляю понятное сообщение
+        }
+
+        return leftValue / rightValue;
     }
 
     @Override
