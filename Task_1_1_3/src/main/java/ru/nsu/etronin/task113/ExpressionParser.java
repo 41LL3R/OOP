@@ -54,8 +54,7 @@ class ExpressionParser {
             }
             if (Character.isDigit(token.charAt(0))) {
                 return new Number(Integer.parseInt(token));
-            }
-            else {
+            } else {
                 return new Variable(token);
             }
         }

@@ -18,7 +18,7 @@ class Div extends BinaryOperation {
         final int rightValue = right.evaluate(variables);
 
         if (rightValue == 0) { // Java сама бросает ArithmeticException при делении на 0
-            throw new ArithmeticException("Division by zero is prohibited"); // Я добавляю понятное сообщение
+            throw new ArithmeticException("Division by zero is prohibited"); // Я добавляю сообщение
         }
 
         return leftValue / rightValue;
