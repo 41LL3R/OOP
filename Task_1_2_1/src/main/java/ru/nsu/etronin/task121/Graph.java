@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+import java.util.function.Function;
 
 public class Graph<T> {
     private GraphStorage<T> storage;
@@ -19,7 +20,7 @@ public class Graph<T> {
     public List<T> getNeighbors(T vertex) { return storage.getNeighbors(vertex); }
     public List<T> getAllVertices() { return storage.getAllVertices(); }
 
-    public void readFromFile(String filename, Class<T> type) throws IOException {
+    public void readFromFile(String filename, Function<String, T> parser) throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -27,8 +28,8 @@ public class Graph<T> {
 
                 String[] parts = line.trim().split("\\s+");
                 if (parts.length >= 2) {
-                    T source = parseVertex(parts[0], type);
-                    T target = parseVertex(parts[1], type);
+                    T source = parser.apply(parts[0]);
+                    T target = parser.apply(parts[1]);
 
                     addVertex(source);
                     addVertex(target);
@@ -36,14 +37,6 @@ public class Graph<T> {
                 }
             }
         }
-    }
-
-    @SuppressWarnings("unchecked")
-    private T parseVertex(String val, Class<T> type) {
-        if (type == Integer.class) {
-            return (T) Integer.valueOf(val);
-        }
-        return (T) val;
     }
 
     public List<T> topologicalSort() {
@@ -90,8 +83,12 @@ public class Graph<T> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Graph<?> graph = (Graph<?>) o;
-        return getAllVertices().size() == graph.getAllVertices().size() &&
-                storage.getEdgeCount() == graph.storage.getEdgeCount();
+        return storage.equals(graph.storage);
+    }
+
+    @Override
+    public int hashCode() {
+        return storage.hashCode();
     }
 
     @Override

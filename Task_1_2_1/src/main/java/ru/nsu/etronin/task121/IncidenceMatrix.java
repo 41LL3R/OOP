@@ -6,9 +6,13 @@ public class IncidenceMatrix<T> implements GraphStorage<T> {
     private final Map<T, Integer> vertexToIndex = new HashMap<>();
     private final Map<Integer, T> indexToVertex = new HashMap<>();
 
+    private static final int EDGE_START = 1;
+    private static final int EDGE_END = -1;
+    private static final int INITIAL_CAPACITY = 10;
+
     private final List<int[]> edges = new ArrayList<>();
 
-    private int[][] matrix = new int[10][10];
+    private int[][] matrix = new int[INITIAL_CAPACITY][INITIAL_CAPACITY];
     private int vertexCount = 0;
 
     @Override
@@ -77,8 +81,8 @@ public class IncidenceMatrix<T> implements GraphStorage<T> {
 
         edges.add(new int[]{srcIdx, tgtIdx});
 
-        matrix[srcIdx][edgeIdx] = 1;
-        matrix[tgtIdx][edgeIdx] = -1;
+        matrix[srcIdx][edgeIdx] = EDGE_START;
+        matrix[tgtIdx][edgeIdx] = EDGE_END;
     }
 
     @Override
@@ -145,5 +149,42 @@ public class IncidenceMatrix<T> implements GraphStorage<T> {
     @Override
     public int getEdgeCount() {
         return edges.size();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        IncidenceMatrix<?> that = (IncidenceMatrix<?>) o;
+
+        if (!Objects.equals(vertexToIndex, that.vertexToIndex)) return false;
+
+        if (!Arrays.deepEquals(matrix, that.matrix)) return false;
+
+        return edgesEqual(this.edges, that.edges);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(vertexToIndex);
+        result = 31 * result + Arrays.deepHashCode(matrix);
+        result = 31 * result + edgesHashCode(edges);
+        return result;
+    }
+
+    private boolean edgesEqual(List<int[]> list1, List<int[]> list2) {
+        if (list1.size() != list2.size()) return false;
+        for (int i = 0; i < list1.size(); i++) {
+            if (!Arrays.equals(list1.get(i), list2.get(i))) return false;
+        }
+        return true;
+    }
+    
+    private int edgesHashCode(List<int[]> list) {
+        int hash = 1;
+        for (int[] edge : list) {
+            hash = 31 * hash + Arrays.hashCode(edge);
+        }
+        return hash;
     }
 }

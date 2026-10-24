@@ -58,4 +58,17 @@ public class AdjacencyList<T> implements GraphStorage<T> {
         for (List<T> list : adjacencyList.values()) count += list.size();
         return count;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AdjacencyList<?> that = (AdjacencyList<?>) o;
+        return Objects.equals(adjacencyList, that.adjacencyList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(adjacencyList);
+    }
 }

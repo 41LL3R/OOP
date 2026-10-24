@@ -108,4 +108,22 @@ public class AdjacencyMatrix<T> implements GraphStorage<T> {
         }
         return count;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AdjacencyMatrix<?> that = (AdjacencyMatrix<?>) o;
+
+        return Objects.equals(vertexToIndex, that.vertexToIndex) &&
+                Arrays.deepEquals(matrix, that.matrix);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(vertexToIndex);
+        result = 31 * result + Arrays.deepHashCode(matrix);
+        return result;
+    }
 }
+
