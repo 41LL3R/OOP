@@ -1,21 +1,25 @@
 package ru.nsu.etronin.task121;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.List;
+import org.junit.jupiter.api.Test;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import org.junit.jupiter.api.io.TempDir;
 
 class GraphTest {
 
     @Test
     void testTopologicalSortSuccess() {
         Graph<String> graph = new Graph<>(new AdjacencyList<>());
-        graph.addVertex("A"); graph.addVertex("B"); graph.addVertex("C"); graph.addVertex("D");
+        graph.addVertex("A");
+        graph.addVertex("B");
+        graph.addVertex("C");
+        graph.addVertex("D");
 
         graph.addEdge("A", "B");
         graph.addEdge("A", "C");
@@ -57,8 +61,10 @@ class GraphTest {
         Graph<String> g1 = new Graph<>(new AdjacencyList<>());
         Graph<String> g2 = new Graph<>(new AdjacencyList<>());
 
-        g1.addVertex("A"); g1.addVertex("B");
-        g2.addVertex("A"); g2.addVertex("B");
+        g1.addVertex("A");
+        g1.addVertex("B");
+        g2.addVertex("A");
+        g2.addVertex("B");
 
         g1.addEdge("A", "B");
         g2.addEdge("A", "B");

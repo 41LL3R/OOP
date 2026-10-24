@@ -125,8 +125,8 @@ public class Graph<T> {
         }
 
         if (visitedCount != allVertices.size()) {
-            throw new IllegalStateException("Граф содержит циклы." +
-                    " Топологическая сортировка невозможна.");
+            throw new IllegalStateException("Граф содержит циклы."
+                    + " Топологическая сортировка невозможна.");
         }
         return result;
     }
