@@ -48,6 +48,10 @@ public class Graph<T> {
         return storage.getAllVertices();
     }
 
+    public boolean containsEdge(T source, T target) {
+        return storage.containsEdge(source, target);
+    }
+
     /**
      * Читает граф из текстового файла фиксированного формата.
      *
