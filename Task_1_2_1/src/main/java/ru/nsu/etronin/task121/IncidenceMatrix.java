@@ -1,6 +1,17 @@
 package ru.nsu.etronin.task121;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+
+/**
+ * Матрица инцидентности.
+ *
+ * @param <T> тип вершины.
+ */
 
 public class IncidenceMatrix<T> implements GraphStorage<T> {
     private final Map<T, Integer> vertexToIndex = new HashMap<>();
@@ -17,7 +28,9 @@ public class IncidenceMatrix<T> implements GraphStorage<T> {
 
     @Override
     public void addVertex(T vertex) {
-        if (vertexToIndex.containsKey(vertex)) return;
+        if (vertexToIndex.containsKey(vertex)) {
+            return;
+        }
 
         if (vertexCount >= matrix.length) {
             int[][] newMatrix = new int[matrix.length * 2][matrix.length * 2];
@@ -34,7 +47,9 @@ public class IncidenceMatrix<T> implements GraphStorage<T> {
 
     @Override
     public void removeVertex(T vertex) {
-        if (!containsVertex(vertex)) return;
+        if (!containsVertex(vertex)) {
+            return;
+        }
         int idxToRemove = vertexToIndex.get(vertex);
 
         for (int i = edges.size() - 1; i >= 0; i--) {
@@ -63,8 +78,12 @@ public class IncidenceMatrix<T> implements GraphStorage<T> {
 
     @Override
     public void addEdge(T source, T target) {
-        if (!containsVertex(source) || !containsVertex(target)) return;
-        if (containsEdge(source, target)) return;
+        if (!containsVertex(source) || !containsVertex(target)) {
+            return;
+        }
+        if (containsEdge(source, target)) {
+            return;
+        }
 
         int srcIdx = vertexToIndex.get(source);
         int tgtIdx = vertexToIndex.get(target);
@@ -87,7 +106,9 @@ public class IncidenceMatrix<T> implements GraphStorage<T> {
 
     @Override
     public void removeEdge(T source, T target) {
-        if (!containsEdge(source, target)) return;
+        if (!containsEdge(source, target)) {
+            return;
+        }
         int srcIdx = vertexToIndex.get(source);
         int tgtIdx = vertexToIndex.get(target);
 
@@ -112,7 +133,9 @@ public class IncidenceMatrix<T> implements GraphStorage<T> {
     @Override
     public List<T> getNeighbors(T vertex) {
         List<T> neighbors = new ArrayList<>();
-        if (!containsVertex(vertex)) return neighbors;
+        if (!containsVertex(vertex)) {
+            return neighbors;
+        }
         int row = vertexToIndex.get(vertex);
 
         for (int j = 0; j < edges.size(); j++) {
@@ -131,12 +154,16 @@ public class IncidenceMatrix<T> implements GraphStorage<T> {
 
     @Override
     public boolean containsEdge(T source, T target) {
-        if (!containsVertex(source) || !containsVertex(target)) return false;
+        if (!containsVertex(source) || !containsVertex(target)) {
+            return false;
+        }
         int srcIdx = vertexToIndex.get(source);
         int tgtIdx = vertexToIndex.get(target);
 
         for (int[] edge : edges) {
-            if (edge[0] == srcIdx && edge[1] == tgtIdx) return true;
+            if (edge[0] == srcIdx && edge[1] == tgtIdx) {
+                return true;
+            }
         }
         return false;
     }
@@ -153,13 +180,21 @@ public class IncidenceMatrix<T> implements GraphStorage<T> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         IncidenceMatrix<?> that = (IncidenceMatrix<?>) o;
 
-        if (!Objects.equals(vertexToIndex, that.vertexToIndex)) return false;
+        if (!Objects.equals(vertexToIndex, that.vertexToIndex)) {
+            return false;
+        }
 
-        if (!Arrays.deepEquals(matrix, that.matrix)) return false;
+        if (!Arrays.deepEquals(matrix, that.matrix)) {
+            return false;
+        }
 
         return edgesEqual(this.edges, that.edges);
     }
@@ -173,13 +208,17 @@ public class IncidenceMatrix<T> implements GraphStorage<T> {
     }
 
     private boolean edgesEqual(List<int[]> list1, List<int[]> list2) {
-        if (list1.size() != list2.size()) return false;
+        if (list1.size() != list2.size()) {
+            return false;
+        }
         for (int i = 0; i < list1.size(); i++) {
-            if (!Arrays.equals(list1.get(i), list2.get(i))) return false;
+            if (!Arrays.equals(list1.get(i), list2.get(i))) {
+                return false;
+            }
         }
         return true;
     }
-    
+
     private int edgesHashCode(List<int[]> list) {
         int hash = 1;
         for (int[] edge : list) {

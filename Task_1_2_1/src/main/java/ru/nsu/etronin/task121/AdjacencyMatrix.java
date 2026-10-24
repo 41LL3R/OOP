@@ -1,6 +1,17 @@
 package ru.nsu.etronin.task121;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+
+/**
+ * Матрица смежности.
+ *
+ * @param <T> тип вершины.
+ */
 
 public class AdjacencyMatrix<T> implements GraphStorage<T> {
     private final Map<T, Integer> vertexToIndex = new HashMap<>();
@@ -11,7 +22,9 @@ public class AdjacencyMatrix<T> implements GraphStorage<T> {
 
     @Override
     public void addVertex(T vertex) {
-        if (vertexToIndex.containsKey(vertex)) return;
+        if (vertexToIndex.containsKey(vertex)) {
+            return;
+        }
 
         if (vertexCount >= matrix.length) {
             int newSize = matrix.length * 2;
@@ -29,7 +42,9 @@ public class AdjacencyMatrix<T> implements GraphStorage<T> {
 
     @Override
     public void removeVertex(T vertex) {
-        if (!vertexToIndex.containsKey(vertex)) return;
+        if (!vertexToIndex.containsKey(vertex)) {
+            return;
+        }
 
         int idxToRemove = vertexToIndex.get(vertex);
 
@@ -71,7 +86,9 @@ public class AdjacencyMatrix<T> implements GraphStorage<T> {
     @Override
     public List<T> getNeighbors(T vertex) {
         List<T> neighbors = new ArrayList<>();
-        if (!containsVertex(vertex)) return neighbors;
+        if (!containsVertex(vertex)) {
+            return neighbors;
+        }
 
         int row = vertexToIndex.get(vertex);
         for (int j = 0; j < vertexCount; j++) {
@@ -103,7 +120,9 @@ public class AdjacencyMatrix<T> implements GraphStorage<T> {
         int count = 0;
         for (int i = 0; i < vertexCount; i++) {
             for (int j = 0; j < vertexCount; j++) {
-                if (matrix[i][j] == 1) count++;
+                if (matrix[i][j] == 1) {
+                    count++;
+                }
             }
         }
         return count;
@@ -111,12 +130,16 @@ public class AdjacencyMatrix<T> implements GraphStorage<T> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         AdjacencyMatrix<?> that = (AdjacencyMatrix<?>) o;
 
-        return Objects.equals(vertexToIndex, that.vertexToIndex) &&
-                Arrays.deepEquals(matrix, that.matrix);
+        return Objects.equals(vertexToIndex, that.vertexToIndex)
+                && Arrays.deepEquals(matrix, that.matrix);
     }
 
     @Override

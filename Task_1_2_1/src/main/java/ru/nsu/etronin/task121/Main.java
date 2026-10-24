@@ -1,6 +1,17 @@
 package ru.nsu.etronin.task121;
 
+/**
+ * Проверка работоспособности программы.
+ */
+
 public class Main {
+
+    /**
+     * Точка входа.
+     *
+     * @param args аргументы.
+     */
+
     public static void main(String[] args) {
         Graph<String> stringGraph = new Graph<>(new AdjacencyList<>());
 

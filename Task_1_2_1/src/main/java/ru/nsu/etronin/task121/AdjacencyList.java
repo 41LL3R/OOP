@@ -1,7 +1,18 @@
 package ru.nsu.etronin.task121;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
+
+/**
+ * Хранение графа в виде списка смежности.
+ *
+ * @param <T> Тип вершины.
+ */
 public class AdjacencyList<T> implements GraphStorage<T> {
     private final Map<T, List<T>> adjacencyList = new HashMap<>();
 
@@ -55,14 +66,20 @@ public class AdjacencyList<T> implements GraphStorage<T> {
     @Override
     public int getEdgeCount() {
         int count = 0;
-        for (List<T> list : adjacencyList.values()) count += list.size();
+        for (List<T> list : adjacencyList.values()) {
+            count += list.size();
+        }
         return count;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         AdjacencyList<?> that = (AdjacencyList<?>) o;
         return Objects.equals(adjacencyList, that.adjacencyList);
     }
