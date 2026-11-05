@@ -1,4 +1,4 @@
-package ru.nsu.etronin.Task122;
+package ru.nsu.etronin.task122;
 
 class Node<K, V> {
     final K key;

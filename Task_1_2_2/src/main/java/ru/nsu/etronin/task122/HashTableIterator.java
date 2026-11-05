@@ -1,4 +1,4 @@
-package ru.nsu.etronin.Task122;
+package ru.nsu.etronin.task122;
 
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;

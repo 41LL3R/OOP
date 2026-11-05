@@ -1,4 +1,4 @@
-package ru.nsu.etronin.Task122;
+package ru.nsu.etronin.task122;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
