@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.etronin.Task_1_2_2","l":"Entry"},{"p":"ru.nsu.etronin.Task_1_2_2","l":"HashTable"},{"p":"ru.nsu.etronin.Task_1_2_2","l":"Main"}];updateSearchResults();
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.etronin.Task122","l":"Entry"},{"p":"ru.nsu.etronin.Task122","l":"HashTable"},{"p":"ru.nsu.etronin.Task122","l":"Main"}];updateSearchResults();
