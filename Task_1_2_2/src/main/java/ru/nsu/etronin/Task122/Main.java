@@ -1,8 +1,19 @@
-package ru.nsu.etronin.Task_1_2_2;
+package ru.nsu.etronin.Task122;
 
 import java.util.ConcurrentModificationException;
 
+/**
+ * Тестовая программа.
+ */
+
 public class Main {
+
+    /**
+     * Точка входа тестовой программы.
+     *
+     * @param args аргументы
+     */
+
     public static void main(String[] args) {
         HashTable<String, Number> hashTable = new HashTable<>();
 

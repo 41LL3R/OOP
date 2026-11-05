@@ -1,8 +1,16 @@
-package ru.nsu.etronin.Task_1_2_2;
+package ru.nsu.etronin.Task122;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
+
+/**
+ * Реализация хеш-таблицы.
+ *
+ * @param <K> тип ключа
+ *
+ * @param <V> тип значения
+ */
 
 public class HashTable<K, V> implements Iterable<Entry<K, V>> {
 
@@ -20,7 +28,9 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
     }
 
     int getIndex(Object key, int capacity) {
-        if (key == null) return 0;
+        if (key == null) {
+            return 0;
+        }
         int h = key.hashCode();
         h ^= (h >>> 16);
         return h & (capacity - 1);
@@ -37,6 +47,14 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
         }
         return null;
     }
+
+    /**
+     * Кладет значение в таблицу по ключу.
+     *
+     * @param key ключ.
+     *
+     * @param value значение.
+     */
 
     public void put(K key, V value) {
         Node<K, V> existing = findNode(key);
@@ -60,6 +78,14 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
         return node == null ? null : node.value;
     }
 
+    /**
+     * Заменяет значение по ключу.
+     *
+     * @param key ключ.
+     *
+     * @param value новое значение.
+     */
+
     public void update(K key, V value) {
         Node<K, V> node = findNode(key);
         if (node == null) {
@@ -72,6 +98,14 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
         return findNode(key) != null;
     }
 
+    /**
+     * Удаляет значение для данного ключа.
+     *
+     * @param key ключ.
+     *
+     * @return true если удалено, иначе false.
+     */
+
     public boolean remove(K key) {
         int index = getIndex(key, table.length);
         Node<K, V> prev = null;
@@ -81,8 +115,7 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
             if (Objects.equals(current.key, key)) {
                 if (prev == null) {
                     table[index] = current.next;
-                }
-                else {
+                } else {
                     prev.next = current.next;
                 }
                 size--;
@@ -116,6 +149,7 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
     void decrementSize() {
         size--;
     }
+
     void incrementModCount() {
         modCount++;
     }
@@ -127,10 +161,16 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         HashTable<?, ?> other = (HashTable<?, ?>) o;
-        if (size != other.size) return false;
+        if (size != other.size) {
+            return false;
+        }
 
         for (Entry<K, V> entry : this) {
             Node<?, ?> otherNode = other.findNode(entry.getKey());

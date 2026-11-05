@@ -1,4 +1,12 @@
-package ru.nsu.etronin.Task_1_2_2;
+package ru.nsu.etronin.Task122;
+
+/**
+ * Неизменяемая пара ключ — значение.
+ *
+ * @param <K> тип ключа
+ *
+ * @param <V> тип значения
+ */
 
 public class Entry<K, V> {
     private final K key;
@@ -12,6 +20,7 @@ public class Entry<K, V> {
     public K getKey() {
         return key;
     }
+
     public V getValue() {
         return value;
     }
