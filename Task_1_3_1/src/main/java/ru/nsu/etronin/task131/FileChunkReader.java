@@ -6,7 +6,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Класс для потокового чтения файла блоками.
+ */
+
 public class FileChunkReader implements AutoCloseable {
+
+    /**
+     * Интерфейс для обработки прочитанных блоков.
+     */
 
     public interface ChunkHandler {
 
@@ -18,6 +26,15 @@ public class FileChunkReader implements AutoCloseable {
     private final int overlap;
     private final int chunkSize;
 
+    /**
+     * Конструктор класса.
+     *
+     * @param filePath  путь к файлу
+     * @param overlap   количество символов для перекрытия
+     * @param chunkSize размер читаемого блока
+     * @throws IOException если файл не найден
+     */
+
     public FileChunkReader(String filePath, int overlap, int chunkSize) throws IOException {
         this.reader = new BufferedReader(
                 new InputStreamReader(new FileInputStream(filePath), StandardCharsets.UTF_8));
@@ -25,6 +42,13 @@ public class FileChunkReader implements AutoCloseable {
         this.chunkSize = chunkSize;
         this.buffer = new char[chunkSize + overlap];
     }
+
+    /**
+     * Читает файл и передает блоки в обработчик.
+     *
+     * @param handler обработчик блоков
+     * @throws IOException при ошибке чтения
+     */
 
     public void forEachChunk(ChunkHandler handler) throws IOException {
         int carryOver = 0;

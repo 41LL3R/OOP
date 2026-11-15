@@ -3,6 +3,10 @@ package ru.nsu.etronin.task131;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Класс для поиска строкового паттерна в массиве символов.
+ */
+
 public class CharPatternMatcher {
 
     private final char[] pattern;
@@ -18,6 +22,14 @@ public class CharPatternMatcher {
     public boolean isEmpty() {
         return pattern.length == 0;
     }
+
+    /**
+     * Ищет все вхождения паттерна в заданном буфере.
+     *
+     * @param buffer массив символов для поиска
+     * @param limit  количество валидных символов в буфере
+     * @return список локальных индексов вхождений
+     */
 
     public List<Integer> findAll(char[] buffer, int limit) {
         List<Integer> hits = new ArrayList<>();

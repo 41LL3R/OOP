@@ -6,6 +6,10 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Класс для поиска подстроки в файле.
+ */
+
 public class SubstringFinder {
 
     private static final int DEFAULT_CHUNK_SIZE = 1024 * 1024;
@@ -16,9 +20,19 @@ public class SubstringFinder {
         this(DEFAULT_CHUNK_SIZE);
     }
 
+
     public SubstringFinder(int chunkSize) {
         this.chunkSize = chunkSize;
     }
+
+    /**
+     * Находит все вхождения подстроки в файле.
+     *
+     * @param filePath путь к файлу
+     * @param target   искомая подстрока
+     * @return список индексов начала вхождений
+     * @throws IOException при ошибке чтения файла
+     */
 
     public List<Integer> find(String filePath, String target) throws IOException {
         CharPatternMatcher matcher = new CharPatternMatcher(target);
