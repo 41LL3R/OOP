@@ -8,6 +8,7 @@ public class Main {
 
     /**
      * Запуск примера.
+     *
      * @param args аргументы
      * @throws Exception при ошибках
      */
