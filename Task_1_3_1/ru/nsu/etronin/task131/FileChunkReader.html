@@ -87,6 +87,7 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">FileChunkReader</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/AutoCloseable.html" title="class or interface in java.lang" class="external-link">AutoCloseable</a></span></div>
+<div class="block">Класс для потокового чтения файла блоками.</div>
 </div>
 </section>
 <section class="summary">
@@ -102,7 +103,9 @@ implements <a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>static interface&nbsp;</code></div>
 <div class="col-second even-row-color"><code><a href="FileChunkReader.ChunkHandler.html" class="type-name-link" title="interface in ru.nsu.etronin.task131">FileChunkReader.ChunkHandler</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Интерфейс для обработки прочитанных блоков.</div>
+</div>
 </div>
 </section>
 </li>
@@ -117,7 +120,9 @@ implements <a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String,int,int)" class="member-name-link">FileChunkReader</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;filePath,
  int&nbsp;overlap,
  int&nbsp;chunkSize)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Конструктор класса.</div>
+</div>
 </div>
 </section>
 </li>
@@ -137,7 +142,9 @@ implements <a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#forEachChunk(ru.nsu.etronin.task131.FileChunkReader.ChunkHandler)" class="member-name-link">forEachChunk</a><wbr>(<a href="FileChunkReader.ChunkHandler.html" title="interface in ru.nsu.etronin.task131">FileChunkReader.ChunkHandler</a>&nbsp;handler)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Читает файл и передает блоки в обработчик.</div>
+</div>
 </div>
 </div>
 </div>
@@ -163,9 +170,14 @@ implements <a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base
  int&nbsp;overlap,
  int&nbsp;chunkSize)</span>
                 throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></span></div>
+<div class="block">Конструктор класса.</div>
 <dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>filePath</code> - путь к файлу</dd>
+<dd><code>overlap</code> - количество символов для перекрытия</dd>
+<dd><code>chunkSize</code> - размер читаемого блока</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - если файл не найден</dd>
 </dl>
 </div>
 </section>
@@ -184,9 +196,12 @@ implements <a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base
 <div class="horizontal-scroll">
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">forEachChunk</span><wbr><span class="parameters">(<a href="FileChunkReader.ChunkHandler.html" title="interface in ru.nsu.etronin.task131">FileChunkReader.ChunkHandler</a>&nbsp;handler)</span>
                   throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></span></div>
+<div class="block">Читает файл и передает блоки в обработчик.</div>
 <dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>handler</code> - обработчик блоков</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - при ошибке чтения</dd>
 </dl>
 </div>
 </section>
