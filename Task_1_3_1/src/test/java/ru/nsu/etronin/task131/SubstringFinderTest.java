@@ -4,10 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -77,5 +79,33 @@ class SubstringFinderTest {
         } catch (IOException e) {
             fail(e);
         }
+    }
+
+    @Test
+    void findsMatchInLargeFile() throws IOException {
+        Path file = tmp.resolve("large.txt");
+
+        long fileSize = 2_000_000_000L;
+        String pattern = "абра";
+        long expected = fileSize - pattern.getBytes(StandardCharsets.UTF_8).length;
+
+        char[] block = new char[8192];
+        Arrays.fill(block, 'a');
+
+        try (BufferedWriter writer = Files.newBufferedWriter(file, StandardCharsets.UTF_8)) {
+            for (long i = 0; i < expected / block.length; i++) {
+                writer.write(block);
+            }
+            writer.write(block, 0, (int) (expected % block.length));
+            writer.write(pattern);
+        }
+
+        assertEquals(fileSize, Files.size(file));
+        assertTrue(fileSize > Runtime.getRuntime().maxMemory());
+
+        SubstringFinder finder = new SubstringFinder();
+        List<Integer> positions = finder.find(file.toString(), pattern);
+
+        assertEquals(List.of((int) expected), positions);
     }
 }
